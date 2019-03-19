@@ -1,0 +1,57 @@
+<script type='text/javascript'>
+var clipboard = new Clipboard('.btn');
+
+clipboard.on('success', function(e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+
+    e.clearSelection();
+    alert("已经复制到剪贴板")
+});
+
+clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+});
+</script>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Rainbows</h1>
+
+<%= search_form_for @q do |f|  %>
+
+    <div class="input-group">
+    <%= f.search_field :features_name_cont, class: "form-control", placeholder: "漂亮"  %>
+      <div class="input-group-append">
+
+      <%= f.submit "彩虹屁", class: "btn btn-success"  %>
+      </div>
+    </div>
+
+<% end %>
+
+<div style="margin-top: 150px"></div>
+<% @rainbows.each do |rainbow| %>
+
+  <div class="input-group">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button"
+                data-toggle="tooltip" data-placement="button"
+                data-clipboard-target="#rainbow<%=rainbow.id%>"
+                title="Copy to Clipboard">
+        Copy
+      </button>
+
+    </span>
+  </div>
+<div>
+  <div class="card">
+    <div class="card-body" id="rainbow<%=rainbow.id %>"><%= rainbow.sentence %></div>
+  </div>
+</div>
+
+<% end %>
+
+

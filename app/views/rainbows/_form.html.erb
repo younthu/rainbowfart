@@ -1,0 +1,22 @@
+<%= form_with(model: rainbow, local: true) do |form| %>
+  <% if rainbow.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rainbow.errors.count, "error") %> prohibited this rainbow from being saved:</h2>
+
+      <ul>
+      <% rainbow.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :sentence %>
+    <%= form.text_area :sentence %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
