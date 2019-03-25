@@ -37,4 +37,6 @@ WORKDIR $RAILS_ROOT
 
 EXPOSE 3000
 #ENV RAILS_SERVE_STATIC_FILES=1
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+
+# start puma in socket and port, can test socket with curl: curl --unix-socket /var/www/app/my_rails_app.sock http:/
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-b", "unix:///var/www/app/my_rails_app.sock", "-p", "3000"]
