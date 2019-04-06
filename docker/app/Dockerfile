@@ -1,7 +1,7 @@
 FROM ruby:2.5
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+RUN apt-get update -qq && apt-get install -y apt-utils &&apt-get install -y build-essential libpq-dev nodejs
 
 # Setting env up
 ENV RAILS_ENV='production'
@@ -12,7 +12,7 @@ WORKDIR /tmp
 RUN gem install bundler
 
 # Update Node version
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 # Install Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -33,10 +33,12 @@ WORKDIR $RAILS_ROOT
 
 # Adding project files
 #COPY . .
-# RUN bundle exec rake assets:precompile, move this to cap tasks, this should be done in every deploy
-
+#RUN bundle exec rake assets:precompile
+ENTRYPOINT ["bundle", "exec", "rake","assets:precompile"]
 EXPOSE 3000
 #ENV RAILS_SERVE_STATIC_FILES=1
 
-# start puma in socket and port, can test socket with curl: curl --unix-socket /var/www/app/my_rails_app.sock http:/
+# start puma in socket and port, can test socket with curl: curl --unix-socket /var/www/app/my_rails_app.sock http:localhost/
+# 1. the shared socket works in ubuntu, not in Mac.
+# 1. curl version should be > 7.4
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-b", "unix:///var/www/app/my_rails_app.sock", "-p", "3000"]
