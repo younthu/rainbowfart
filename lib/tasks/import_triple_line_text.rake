@@ -45,7 +45,7 @@ namespace :import_triple_line_text do
       end
 
       rb.sentence=text
-      rb.feature_list=['毒鸡汤']
+      rb.type_list =['毒鸡汤']
       rb.save
       i+=j
     end

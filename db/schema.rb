@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_171024) do
 
   create_table "rainbows", force: :cascade do |t|
     t.text "sentence"
+    t.text "explain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

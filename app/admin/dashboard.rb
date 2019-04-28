@@ -29,5 +29,18 @@ ActiveAdmin.register_page "Dashboard" do
     #     end
     #   end
     # end
+
+    columns do
+      column do
+        panel "All rainbows" do
+          table_for Rainbow.limit(100).each do |r|
+            column(:sentence) {|sentence| link_to(sentence.sentence, admin_rainbow_path(sentence))}
+            column(:type) {|sentence| sentence.type_list.to_s}
+          end
+        end
+      end
+    end
   end # content
+
+
 end

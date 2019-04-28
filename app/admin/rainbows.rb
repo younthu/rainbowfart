@@ -1,4 +1,12 @@
 ActiveAdmin.register Rainbow do
+  scope :poisonous_soup do |rainbows|
+    rainbows
+  end
+
+  scope :rainbowfart
+  scope :golden_sentence
+  scope :famous_quotes
+  
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -16,8 +24,10 @@ end
     f.semantic_errors
     f.inputs "Details" do
       f.input :sentence
+      f.input :explain
       f.input :gender_list
       f.input :feature_list
+      f.input :type_list
     end
 
     f.actions
