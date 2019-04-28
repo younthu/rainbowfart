@@ -1,4 +1,6 @@
 ActiveAdmin.register Rainbow do
+
+  scope :all
   scope :poisonous_soup do |rainbows|
     rainbows
   end
@@ -6,7 +8,7 @@ ActiveAdmin.register Rainbow do
   scope :rainbowfart
   scope :golden_sentence
   scope :famous_quotes
-  
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -19,6 +21,17 @@ permit_params do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
   permitted
 end
+
+  index do |list|
+    selectable_column
+    id_column
+    column :sentence
+    column :explain
+    column :feature_list
+    column :type_list
+    actions
+
+  end
 
   form do |f|
     f.semantic_errors

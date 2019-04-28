@@ -1,6 +1,6 @@
 namespace :import_triple_line_text do
 
-  desc "import rainbow in triple line format from text file"
+  desc "import rainbow in triple line format from text file, rake import_triple_line_text:import_triple_line_text[db/rainbow.yml]"
   task :import_triple_line_text,[:file_name] => [:environment] do |task, args|
 
     records=[];
