@@ -1,10 +1,7 @@
 ActiveAdmin.register Rainbow do
 
   scope :all
-  scope :poisonous_soup do |rainbows|
-    rainbows
-  end
-
+  scope :poisonous_soup
   scope :rainbowfart
   scope :golden_sentence
   scope :famous_quotes
