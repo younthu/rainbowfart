@@ -20,6 +20,8 @@ permit_params do
 end
 
 
+  # preserve_default_filters! , 保留所有默认的filter
+#
   filter :sentence
   filter :explain
   filter :tagged_with_type,
