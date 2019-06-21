@@ -2,6 +2,15 @@
 # rainbowfart
 彩虹屁网站
 
+# 加载数据
+
+1. 加载彩虹屁数据
+   ~~~
+   rake import_triple_line_text:import_triple_line_text[db/rainbow_proposal.yml]
+   rake import_triple_line_text:import_triple_line_text[db/rainbow.yml]
+   rake import_triple_line_text:load_poisonous_soup
+   rake import_data:load_qqzf_csv[data/qqzf1.csv]   # 388w条记录，生产环境上SQLite第一次加载用时3108s, 51分钟，在本地postgresl用了40分钟.
+   ~~~
 
 ## ActiveAdmin
 
