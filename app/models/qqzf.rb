@@ -1,0 +1,2 @@
+class Qqzf < ApplicationRecord
+end

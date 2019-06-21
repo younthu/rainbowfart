@@ -1,10 +1,10 @@
 class Rainbow < ApplicationRecord
-  acts_as_taggable_on :genders,:keywords, :features, :types, :collections# collection用来给句子归类，写一个标题, 比如"祝寿彩虹屁大集合"
+  acts_as_taggable_on :genders,:keywords, :features, :types, :sub_types, :collections# collection用来给句子归类，写一个标题, 比如"祝寿彩虹屁大集合"
+  acts_as_taggable_on :source
 
   scope :poisonous_soup,  ->{ tagged_with("毒鸡汤", on: :types)}
   scope :rainbowfart,     ->{ tagged_with("彩虹屁", on: :types)}
-  scope :golden_sentence, ->{ tagged_with("金句", on: :types)}
-  scope :famous_quotes,   ->{ tagged_with("名人名言", on: :types)}
+  scope :famous_quotes,   ->{ tagged_with("名言警句", on: :types)}
 
   scope :tagged_with_type, ->(*tag) { tagged_with(tag, on: :types)}
   scope :tagged_with_feature, ->(*feature) { tagged_with(feature, on: :features)}

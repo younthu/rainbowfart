@@ -3,7 +3,7 @@ ActiveAdmin.register Rainbow do
   scope :all
   scope :poisonous_soup
   scope :rainbowfart
-  scope :golden_sentence
+  # scope :golden_sentence
   scope :famous_quotes
 
 # See permitted parameters documentation:
