@@ -55,4 +55,43 @@ t0 = Time.now
 
     puts "started at #{t1}, finished at #{t2}, total #{delta} seconds, #{count} records."
   end
+
+  desc "导入qqzf.csv数据，这是qqzf.cn拔下来的内容, rake import_data:load_qqzf_csv[data/qqzf.json]"
+  task :load_qqzf_csv, [:file_name] => [:environment] do |task, args|
+
+    puts `ps -o rss= -p #{$$}`.to_i
+    count = 0
+
+    t1 = Time.now
+
+    puts `ps -o rss= -p #{$$}`.to_i
+
+    records = []
+    CSV.foreach(args[:file_name], headers: true) do |item|
+      title  = ActionView::Base.full_sanitizer.sanitize(item["title"]) # 去除<h1></h1>标签
+      category1 = item["category1"]
+      category2 = item["category2"]
+      content   = item["content"]
+      url       = item["url"]
+
+      records << Qqzf.new({title: title, category1: category1, category2: category2,content: content, url: url})
+      count += 1
+
+      if records.length >= 1000
+        puts "imported #{count} records in #{Time.now - t1}s."
+        Qqzf.import records
+        records = []
+      end
+    end
+
+    if records.length > 0
+      Qqzf.import records
+      records = []
+    end
+
+    t2 = Time.now
+    delta = t2 -t1 # in seconds
+
+    puts "started at #{t1}, finished at #{t2}, total #{delta} seconds, #{count} records."
+  end
 end
