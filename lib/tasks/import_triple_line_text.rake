@@ -9,7 +9,7 @@ namespace :import_triple_line_text do
     end
 
     (0...records.count/3).each do |i|
-      rb=Rainbow.create({sentence: records[i*3], gender_list:records[i*3+1], feature_list:records[i*3+2]});
+      rb=Rainbow.create({sentence: records[i*3], gender_list:records[i*3+1], feature_list:records[i*3+2], type_list: ["彩虹屁"]});
       rb.save;
     end
   end

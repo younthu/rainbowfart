@@ -6,6 +6,9 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
 
+<!--    google verification-->
+    <meta name="google-site-verification" content="50Ds52lvLmA8NY9mKIj28iY6VB778NgzZuT9uV5g8Gw" />
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -33,10 +36,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">首页 <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">彩虹屁</a>
+          <a class="nav-link" href="/rainbows">彩虹屁</a>
         </li>
         <li class="nav-item">
            <a class="nav-link" href="#">毒鸡汤</a>
@@ -56,9 +59,9 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0" action="/" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search" name="q[sentence_cont]">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
       </form>
     </div>
   </nav>
