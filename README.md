@@ -22,4 +22,4 @@
     先检查是否有正确安装yarn.
     Add env variable RAILS_SERVE_STATIC_FILES to start command, 
     [Stackoverflow](https://stackoverflow.com/questions/21969549/rails-application-css-asset-not-found-in-production-mode)
-1. 
+1. `@q.result(distinct: true)` distinct为true时很耗时。查询qqzf387w记录大概要15-20s，去掉以后大概只要0.9s

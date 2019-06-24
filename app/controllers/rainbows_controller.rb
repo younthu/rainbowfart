@@ -5,7 +5,13 @@ class RainbowsController < InheritedResources::Base
     @q = Rainbow.ransack(params[:q])
     @rainbows = @q.result(distinct: true)
 
-    @rainbows = @rainbows.order('created_at DESC').page(params[:page]).per(25)
+    @rainbows = @rainbows.page(params[:page]).per(25)
+  end
+
+  def show
+    @rainbow = Rainbow.find params[:id]
+    @prev = Rainbow.where("id < ?", params[:id]).order(id: :desc).limit(1)&.[](0)
+    @next = Rainbow.where("id > ?", params[:id]).limit(1)&.[](0)
   end
 
   private

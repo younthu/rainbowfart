@@ -25,31 +25,19 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= search_form_for @q do |f|  %>
-
-    <div class="input-group" style="display: none">
-    <%= f.search_field :features_name_cont, class: "form-control", placeholder: "漂亮"  %>
-      <div class="input-group-append">
-
-      <%= f.submit "彩虹屁", class: "btn btn-success"  %>
-      </div>
-    </div>
-
-<% end %>
-
 
 
   <div  style="padding-top: 10px;padding-bottom: 10px;padding-left: 30px">
-    <%= paginate @rainbows %>
+    <%= paginate @qqzfs %>
   </div>
 
-<% @rainbows.each do |rainbow| %>
+<% @qqzfs.each do |qqzf| %>
 
   <div class="input-group" style="display: none">
         <span class="input-group-btn">
         <button class="btn btn-default" type="button"
                 data-toggle="tooltip" data-placement="button"
-                data-clipboard-target="#rainbow<%=rainbow.id%>"
+                data-clipboard-target="#rainbow<%=qqzf.id%>"
                 title="Copy to Clipboard">
         Copy
       </button>
@@ -58,16 +46,13 @@
   </div>
 <div style="padding-left:30px;padding-right:30px;padding-top:10px;">
   <div class="card">
-    <div class="card-body" id="rainbow<%=rainbow.id %>">
-      <i class="fa fa-clipboard copy-button" aria-hidden="true"  style="" data-clipboard-action="copy" data-clipboard-target="#rainbow<%=rainbow.id%>"></i>
-      <%= link_to rainbow.sentence, rainbow  %>
-    </div>
+    <div class="card-body" id="rainbow<%=qqzf.id %>"> <i class="fa fa-clipboard copy-button" aria-hidden="true"  style="" data-clipboard-action="copy" data-clipboard-target="#rainbow<%=qqzf.id%>"></i><%= qqzf.content %></div>
   </div>
 </div>
 
 <% end %>
 <div style="padding-left: 30px;padding-top: 10px;padding-bottom: 30px">
-<%= paginate @rainbows %>
+<%= paginate @qqzfs %>
 </div>
 <script>
     var clipboard = new Clipboard('.copy-button');

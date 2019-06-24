@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   resources :rainbows
+  get '/myjj', to:'qqzfs#index'
   root 'rainbows#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

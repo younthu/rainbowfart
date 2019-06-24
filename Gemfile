@@ -70,6 +70,9 @@ group :development do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rails'
+
+  # miniprofiler
+  gem 'rack-mini-profiler'
 end
 
 group :test do
