@@ -8,3 +8,4 @@ User-agent: *
 Disallow: /*.php$
 Disallow: /admin/
 Allow: /
+Sitemap: http://rainbow.ilibrary.me/sitemap.xml.gz
