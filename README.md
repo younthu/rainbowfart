@@ -23,3 +23,13 @@
     Add env variable RAILS_SERVE_STATIC_FILES to start command, 
     [Stackoverflow](https://stackoverflow.com/questions/21969549/rails-application-css-asset-not-found-in-production-mode)
 1. `@q.result(distinct: true)` distinct为true时很耗时。查询qqzf387w记录大概要15-20s，去掉以后大概只要0.9s
+1. sqlite在数据量大的时候count非常慢, 380w条记录需要58978.9ms，分页查询只要0.8ms. 这对kaminari分页影响比较大.解决办法就是hack ActiveRelation
+   ~~~
+   a = Qqzf.all
+       a.instance_eval do
+         def total_count
+           3876341
+         end
+       end
+       @qqzfs = a.page(params[:page]).per(25)
+   ~~~
