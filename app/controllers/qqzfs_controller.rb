@@ -8,7 +8,9 @@ class QqzfsController < InheritedResources::Base
     a = Qqzf.all
     a.instance_eval do
       def total_count
-        3876341
+        Rails.cache.fetch("qqzf_total_count", expires_in: 240.hours) do
+          Qqzf.count
+        end
       end
     end
     @qqzfs = a.page(params[:page]).per(25)
