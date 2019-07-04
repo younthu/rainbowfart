@@ -44,6 +44,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Active Admin
 gem 'activeadmin'
 
+# Kaminari local
+gem "kaminari-i18n"
+
 gem 'devise'
 gem 'cancancan'
 gem 'draper'
