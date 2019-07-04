@@ -5,7 +5,7 @@ class RainbowsController < InheritedResources::Base
     @q = Rainbow.ransack(params[:q])
     @rainbows = @q.result(distinct: true)
 
-    @rainbows = @rainbows.page(params[:page]).per(25)
+    @rainbows = @rainbows.order('id DESC').page(params[:page]).per(25)
   end
 
   def show
