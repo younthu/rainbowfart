@@ -1,0 +1,2 @@
+class Yijuzi < ApplicationRecord
+end

@@ -4,7 +4,7 @@ namespace :import_data do
 
     puts `ps -o rss= -p #{$$}`.to_i
     count = 0
-t0 = Time.now
+    t0 = Time.now
     file = File.open(args[:file_name])
     qqzf = JSON.load(file)
 
@@ -56,7 +56,7 @@ t0 = Time.now
     puts "started at #{t1}, finished at #{t2}, total #{delta} seconds, #{count} records."
   end
 
-  desc "导入qqzf.csv数据，这是qqzf.cn拔下来的内容, rake import_data:load_qqzf_csv[data/qqzf.json]"
+  desc "导入qqzf.csv数据，这是qqzf.cn拔下来的内容, rake import_data:load_qqzf_csv[data/qqzf.csv]"
   task :load_qqzf_csv, [:file_name] => [:environment] do |task, args|
 
     puts `ps -o rss= -p #{$$}`.to_i
@@ -86,6 +86,64 @@ t0 = Time.now
 
     if records.length > 0
       Qqzf.import records
+      records = []
+    end
+
+    t2 = Time.now
+    delta = t2 -t1 # in seconds
+
+    puts "started at #{t1}, finished at #{t2}, total #{delta} seconds, #{count} records."
+  end
+
+  desc "导入1juzi.csv数据，这是1juzi.com拔下来的内容, rake import_data:load_1juzi_csv[data/1juzi.csv]"
+  task :load_1juzi_csv, [:file_name] => [:environment] do |task, args|
+
+    puts `ps -o rss= -p #{$$}`.to_i
+    count = 0
+
+    t1 = Time.now
+
+    puts `ps -o rss= -p #{$$}`.to_i
+
+    records = []
+    CSV.foreach(args[:file_name], headers: true) do |item|
+      title  = ActionView::Base.full_sanitizer.sanitize(item["title"]) # 去除<h1></h1>标签
+      category1 = item["category1"]
+      category2 = item["category2"]
+      content   = item[""]
+      url       = item["url"]
+
+      if not item["sentences"]
+        puts item
+      end
+
+      item["sentences"]&.split(/\d+、/)&.each do |s|
+        qqzf = Yijuzi.new
+        qqzf.category1 = category1
+        qqzf.category2 = category2
+        qqzf.title     = title
+        qqzf.url       = item["url"]
+        qqzf.content   = s
+        # qqzf.save
+        # records <<  qqzf
+        records << {category1: category1,
+                    category2: category2,
+                    title: title,
+                    url: "1juzi",
+                    content: s}
+        count+=1
+
+        if count % 5000 == 0
+          Yijuzi.import records
+          puts "created #{count} records in #{Time.now - t1} seconds."
+          records = []
+        end
+      end
+
+    end
+
+    if records.length > 0
+      Yijuzi.import records
       records = []
     end
 

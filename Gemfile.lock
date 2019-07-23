@@ -210,6 +210,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-i18n (5.1.2)
+      i18n (>= 0.7, < 2)
+      railties (>= 5.0, < 6)
     railties (5.2.2.1)
       actionpack (= 5.2.2.1)
       activesupport (= 5.2.2.1)
@@ -312,6 +315,7 @@ DEPENDENCIES
   pundit
   rack-mini-profiler
   rails (~> 5.2.2, >= 5.2.2.1)
+  rails-i18n
   ransack
   sass-rails (~> 5.0)
   selenium-webdriver

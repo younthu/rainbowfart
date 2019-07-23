@@ -44,7 +44,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Active Admin
 gem 'activeadmin'
 
-# Kaminari local
+# rails locale
+gem 'rails-i18n'
+
+# Kaminari locale
 gem "kaminari-i18n"
 
 gem 'devise'

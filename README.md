@@ -5,12 +5,15 @@
 # 加载数据
 
 1. 加载彩虹屁数据
-   ~~~
+   注意json比较耗数据, 
+   ~~~shell
    rake import_triple_line_text:import_triple_line_text[db/rainbow_proposal.yml]
    rake import_triple_line_text:import_triple_line_text[db/rainbow.yml]
    rake import_triple_line_text:load_poisonous_soup
-   rake import_data:load_qqzf_csv[data/qqzf1.csv]   # 388w条记录，生产环境上SQLite第一次加载用时3108s, 51分钟，在本地postgresl用了40分钟.
+   rake import_data:load_qqzf_csv[data/qqzf1.csv]   # 388w条记录，生产环境上SQLite第一次加载用时3108s, 51分钟，在本地postgresl用了40分钟. 
+   rake import_data:load_1juzi_csv[data/1juzi1.csv] # 12428343条记录
    ~~~
+1. 1juzi爬下来的数据分类按category1(大类), category2(小类）来分的。有部分文章是没有category2的
 
 ## ActiveAdmin
 
