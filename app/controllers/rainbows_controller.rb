@@ -14,10 +14,14 @@ class RainbowsController < InheritedResources::Base
     @next = Rainbow.where("id > ?", params[:id]).limit(1)&.[](0)
   end
 
+  def collections
+    @collections = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'collections', taggable_type: :Rainbow).uniq
+  end
+
   private
 
     def rainbow_params
-      params.require(:rainbow).permit(:sentence)
+      params.require(:rainbow).permit(:sentence,:collections)
     end
 end
 

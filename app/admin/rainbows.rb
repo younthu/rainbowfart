@@ -14,7 +14,7 @@ ActiveAdmin.register Rainbow do
 # or
 #
 permit_params do
-  permitted = [:sentence, :gender_list, :feature_list]
+  permitted = [:sentence, :gender_list, :feature_list, :type_list, :collection_list]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
   permitted
 end
