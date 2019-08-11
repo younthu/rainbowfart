@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :rainbows
   get '/myjj', to:'qqzfs#index'
   get '/collections', to:'rainbows#collections'
+  get '/collection/:id', to:'rainbows#collection'
   root 'rainbows#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

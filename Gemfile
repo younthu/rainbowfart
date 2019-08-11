@@ -55,6 +55,9 @@ gem 'cancancan'
 gem 'draper'
 gem 'pundit'
 
+# devise i18n
+gem 'devise-i18n'
+
 # import
 gem 'activerecord-import'
 
