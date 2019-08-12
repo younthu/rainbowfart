@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-<div class="card">
+<div class="card" style="margin: 20px">
   <div class="card-header">
     彩虹屁
   </div>
@@ -16,4 +16,53 @@
     <%= link_to "下一篇 >", @next, class: "btn float-right" if @next%>
 
   </div>
+</div>
+
+<div class="card" style="margin: 20px">
+
+<!--<div class="card-body">-->
+  <h2 class="card-header">评论:</h2>
+
+  <% @rainbow.comments.each do |comment| %>
+    <div class="card-block" style="margin: 0 10px 0 10px">
+
+      <strong style="color: orange"><%= comment.user %>:</strong>
+      <%= comment.content %>
+
+    <p><i style="color:lightgrey"><%=comment.created_at %></i></p>
+
+    </div>
+  <% end %>
+  <%= "暂无评论。" if @rainbow.comments.count == 0 %>
+<!--</div>-->
+  <div class="card-body">
+    <hr>
+  <h2>添加评论:</h2>
+
+  <%= form_with(model: [ @rainbow, @rainbow.comments.build ], local: true) do |form| %>
+
+    <p>
+
+      <%= form.label "用户名" %><br>
+
+      <%= form.text_field :user, class:"form-control" %>
+
+    </p>
+
+    <p>
+
+      <%= form.label "评论内容" %><br>
+
+      <%= form.text_area :content, class:"form-control" %>
+
+    </p>
+
+    <p>
+
+      <%= form.submit "评论", class:"form-control btn btn-primary"%>
+
+    </p>
+
+  <% end %>
+</div>
 </div>

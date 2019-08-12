@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :rainbows, only:[:index,:show] do
+    resources :comments
 
-  resources :rainbows
+  end
   get '/myjj', to:'qqzfs#index'
   get '/collections', to:'rainbows#collections'
   get '/collection/:id', to:'rainbows#collection'
