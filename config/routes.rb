@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :rainbows, only:[:index,:show] do
-    resources :comments
+    resources :user_comments
 
   end
   get '/myjj', to:'qqzfs#index'

@@ -41,15 +41,6 @@ ActiveRecord::Schema.define(version: 2019_08_11_133641) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string "user"
-    t.text "content"
-    t.bigint "rainbow_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["rainbow_id"], name: "index_comments_on_rainbow_id"
-  end
-
   create_table "qqzfs", force: :cascade do |t|
     t.string "category1"
     t.string "category2"
@@ -92,6 +83,15 @@ ActiveRecord::Schema.define(version: 2019_08_11_133641) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "user_comments", force: :cascade do |t|
+    t.string "user"
+    t.text "content"
+    t.bigint "rainbow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rainbow_id"], name: "index_user_comments_on_rainbow_id"
+  end
+
   create_table "yijuzis", force: :cascade do |t|
     t.string "category1"
     t.string "category2"
@@ -102,5 +102,5 @@ ActiveRecord::Schema.define(version: 2019_08_11_133641) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comments", "rainbows"
+  add_foreign_key "user_comments", "rainbows"
 end

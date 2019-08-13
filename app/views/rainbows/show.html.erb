@@ -23,7 +23,7 @@
 <!--<div class="card-body">-->
   <h2 class="card-header">评论:</h2>
 
-  <% @rainbow.comments.each do |comment| %>
+  <% @rainbow.user_comments.each do |comment| %>
     <div class="card-block" style="margin: 0 10px 0 10px">
 
       <strong style="color: orange"><%= comment.user %>:</strong>
@@ -33,13 +33,13 @@
 
     </div>
   <% end %>
-  <%= "暂无评论。" if @rainbow.comments.count == 0 %>
+  <%= "暂无评论。" if @rainbow.user_comments.count == 0 %>
 <!--</div>-->
   <div class="card-body">
     <hr>
   <h2>添加评论:</h2>
 
-  <%= form_with(model: [ @rainbow, @rainbow.comments.build ], local: true) do |form| %>
+  <%= form_with(model: [ @rainbow, @rainbow.user_comments.build ], local: true) do |form| %>
 
     <p>
 

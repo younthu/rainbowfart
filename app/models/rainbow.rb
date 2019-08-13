@@ -1,5 +1,5 @@
 class Rainbow < ApplicationRecord
-  has_many :comments
+  has_many :user_comments
   acts_as_taggable_on :genders,:keywords, :features, :types, :sub_types, :collections# collection用来给句子归类，写一个标题, 比如"祝寿彩虹屁大集合"
   acts_as_taggable_on :source
 
