@@ -15,6 +15,27 @@
    ~~~
 1. 1juzi爬下来的数据分类按category1(大类), category2(小类）来分的。有部分文章是没有category2的
 
+# SEO
+
+## 每篇内容都生成独立title
+## Breadcrumbs on Rails with Gretel
+https://www.sitepoint.com/breadcrumbs-rails-gretel/,
+面包屑导航就是一个路径导航, runoob上有[bootstrap4面包屑导航效果](https://www.runoob.com/bootstrap4/bootstrap4-breadcrumb.html)
+
+##参考
+
+1. [给RailsDeveloper的基本SEO](http://gogojimmy.net/2013/09/26/basic-seo-for-rails-developer/)
+
+
+# 日常维护
+
+## 更新sitemap
+
+1. 在生产环境上运行`rake sitemap:refresh`, 该命令会自动生产新的sitemap.xml.gz然后放public目录下.但是ping google会失败。
+1. 在本地运行`hp rake sitemap:refresh`, 通知google sitemap更新了。
+1. 从rainbow.ilibrary.me/sitemap.xml.gz下载sitemap文件，可能要经用浏览器缓存才能下到最新的sitemap.
+
+
 ## ActiveAdmin
 
 1. [Mastering ActiveAdmin](http://staal.io/blog/2013/02/26/mastering-activeadmin/)

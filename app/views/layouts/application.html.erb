@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>句仙网| <%= content_for?(:title) ? yield(:title) : "美句,鸡汤,段子合集" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
@@ -26,7 +26,7 @@
 
   </head>
 
-  <body>
+  <body style="max-width: 1000px;margin: 0 auto;">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">彩虹屁</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
           <a class="nav-link" href="/rainbows">彩虹屁</a>
         </li>
         <li class="nav-item">
-           <a class="nav-link" href="#">毒鸡汤</a>
+           <a class="nav-link" href="/poison">毒鸡汤</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

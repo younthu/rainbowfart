@@ -1,4 +1,5 @@
 
+<% title "彩虹屁" %>
 <style>
   .card-body before {
     content: "\f0c5";
@@ -60,7 +61,11 @@
   <div class="card">
     <div class="card-body" id="rainbow<%=rainbow.id %>">
       <i class="fa fa-clipboard copy-button" aria-hidden="true"  style="" data-clipboard-action="copy" data-clipboard-target="#rainbow<%=rainbow.id%>"></i>
-      <%= link_to rainbow.sentence, rainbow  %>
+      <div>
+        <a href="<%=rainbow_path(rainbow) %>">
+            <%=rainbow.sentence %>
+        </a>
+      </div>
     </div>
   </div>
 </div>

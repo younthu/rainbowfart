@@ -1,3 +1,7 @@
+<% title @name %>
+
+<h1><%= @name %></h1>
+
 <div class="list-group"></div>
   <% @rainbows.each do |rainbow| %>
   <a href=<%= rainbow_path(rainbow) %> class="list-group-item list-group-item-action">

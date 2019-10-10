@@ -2,10 +2,25 @@ class RainbowsController < InheritedResources::Base
 
 
   def index
-    @q = Rainbow.ransack(params[:q])
+    if params[:poision].present?
+      @q = Rainbow
+    else
+      @q = Rainbow.ransack(params[:q])
+    end
+
     @rainbows = @q.result(distinct: true)
 
     @rainbows = @rainbows.order('id DESC').page(params[:page]).per(25)
+  end
+
+  def poison
+
+    @q = Rainbow.poisonous_soup.ransack(params[:q])
+    @rainbows = @q.result(distinct: true)
+
+    @rainbows = @rainbows.order('id DESC').page(params[:page]).per(25)
+
+    render :index
   end
 
   def show
@@ -22,6 +37,7 @@ class RainbowsController < InheritedResources::Base
   def collection
     collection_id = params[:id]
     name  = ActsAsTaggableOn::Tag.find(collection_id).name
+    @name = name
 
     @rainbows = Rainbow.tagged_with(name)
 
