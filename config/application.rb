@@ -17,6 +17,14 @@ module Rainbowfart
     # the framework and any gems in your application.
     #
 
+    # cors configuration, only get allowed
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :options]
+      end
+    end
+
     config.i18n.available_locales = [:'zh-CN']
     config.i18n.default_locale = :'zh-CN'
   end
