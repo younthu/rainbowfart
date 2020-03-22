@@ -23,6 +23,18 @@ class RainbowsController < InheritedResources::Base
     render :index
   end
 
+  # 随机生成一句话, 返回json, 只包含彩虹屁，不包含励志语句
+  def random
+    while true
+      r = Random.rand(Rainbow.count)
+      rainbow = r.find r
+
+      if rainbow
+        render json: rainbow and return
+      end
+    end
+  end
+
   def show
     @rainbow = Rainbow.find params[:id]
     @prev = Rainbow.where("id < ?", params[:id]).order(id: :desc).limit(1)&.[](0)
