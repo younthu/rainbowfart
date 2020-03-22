@@ -27,7 +27,7 @@ class RainbowsController < InheritedResources::Base
   def random
     while true
       r = Random.rand(Rainbow.count)
-      rainbow = r.find r
+      rainbow = Rainbow.find r
 
       if rainbow
         render json: rainbow and return
