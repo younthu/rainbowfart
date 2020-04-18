@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get '/collection/:id', to:'rainbows#collection'
   get '/poison', to: 'rainbows#poison'
   get '/api/rainbow/random', to: 'rainbows#random'
-  root 'rainbows#index'
+  root 'rainbows#report'
+  get 'report', to: 'rainbows#report'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
