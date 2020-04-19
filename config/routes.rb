@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/collection/:id', to:'rainbows#collection'
   get '/poison', to: 'rainbows#poison'
   get '/api/rainbow/random', to: 'rainbows#random'
+  get '/search', to: "rainbows#index"
   root 'rainbows#report'
   get 'report', to: 'rainbows#report'
   devise_for :admin_users, ActiveAdmin::Devise.config
