@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>句仙网| <%= content_for?(:title) ? yield(:title) : "美句,鸡汤,段子合集" %></title>
+		<%= display_meta_tags site: '彩虹屁' %>  <!-- meta_tags -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
