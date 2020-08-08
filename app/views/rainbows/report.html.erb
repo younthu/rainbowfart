@@ -4,7 +4,10 @@
 <div class="card">
   <div class="card-block" style="padding: 10px">
     <% @report.each do |r| %>
-      <p><%= r %></p>
+      <p><%= r.sentence %>
+				<%= link_to '原文', r %>
+			</p>
+
     <%end %>
   </div>
 </div>

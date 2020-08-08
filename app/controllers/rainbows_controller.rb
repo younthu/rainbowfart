@@ -43,11 +43,12 @@ class RainbowsController < InheritedResources::Base
   def report
     # 随机拼report
 
-    @report = []
-    10.times do |t|
-      r = Rainbow.find Random.rand(Rainbow.count)
-      @report << r.sentence
-    end
+    # @report = []
+    # 10.times do |t|
+    #   r = Rainbow.find Random.rand(Rainbow.count)
+    #   @report << r.sentence
+    # end
+    @report = Rainbow.all.sample(10)
 
   end
 
