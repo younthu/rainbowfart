@@ -1,5 +1,6 @@
 class RainbowsController < InheritedResources::Base
-
+  add_breadcrumb "首页", :root_path
+  add_breadcrumb "彩虹屁", :rainbows_path
 
   def index
     if params[:poision].present?

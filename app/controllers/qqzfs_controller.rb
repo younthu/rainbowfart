@@ -1,4 +1,6 @@
 class QqzfsController < InheritedResources::Base
+  add_breadcrumb "首页", :root_path
+  add_breadcrumb "名言警句", :myjj_path
 
   def index
 
@@ -14,5 +16,9 @@ class QqzfsController < InheritedResources::Base
       end
     end
     @qqzfs = a.page(params[:page]).per(25)
+  end
+
+  def show
+
   end
 end

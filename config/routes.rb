@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :user_comments
 
   end
+  get '/rainbow', to: 'rainbows#index'
   get '/myjj', to:'qqzfs#index'
   get '/collections', to:'rainbows#collections'
   get '/collection/:id', to:'rainbows#collection'
