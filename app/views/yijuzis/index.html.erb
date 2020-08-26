@@ -1,0 +1,86 @@
+
+<style>
+  .card-body before {
+    content: "\f0c5";
+
+    font: normal normal normal 14px/1 FontAwesome;
+  }
+
+  .card-body {
+    padding-left: 5px;
+  }
+
+  .card-body .copy-button{
+    border-color: gray;
+    border-width: 1px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-style: dotted;
+    padding: 4px;
+    margin: 5px;
+    color: grey;
+  }
+</style>
+
+<p id="notice"><%= notice %></p>
+
+
+
+  <div  style="padding-top: 10px;padding-bottom: 10px;padding-left: 30px">
+    <%= paginate @yijuzis %>
+  </div>
+
+<% @yijuzis.each do |yijuzi| %>
+
+  <div class="input-group" style="display: none">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button"
+                data-toggle="tooltip" data-placement="button"
+                data-clipboard-target="#rainbow<%=yijuzi.id%>"
+                title="Copy to Clipboard">
+        Copy
+      </button>
+
+    </span>
+  </div>
+<div style="padding-left:30px;padding-right:30px;padding-top:10px;">
+  <div class="card">
+    <div class="card-body" id="rainbow<%=yijuzi.id %>"> <i class="fa fa-clipboard copy-button" aria-hidden="true"  style="" data-clipboard-action="copy" data-clipboard-target="#rainbow<%=yijuzi.id%>"></i><%= yijuzi.content %></div>
+  </div>
+</div>
+
+<% end %>
+<div style="padding-left: 30px;padding-top: 10px;padding-bottom: 30px">
+<%= paginate @yijuzis %>
+</div>
+<script>
+    var clipboard = new Clipboard('.copy-button');
+
+    clipboard.on('success', function(e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+
+        e.clearSelection();
+        $.alert("已经复制到剪贴板:<br>" + e.text)
+    });
+
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+$(document).ready(function(){
+
+
+   // $(".copy-button").click(function(){
+   //    // event.stopPropagation();
+   //    // event.stopImmediatePropagation();
+   //    alert($(this).parent()[0].innerText);
+   //    console.log('i was clicked');
+   //
+   //
+   //  })
+})
+;
+</script>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   get '/rainbow', to: 'rainbows#index'
   get '/myjj', to:'qqzfs#index'
+  get '/yijuzi', to: 'yijuzis#index'
   get '/collections', to:'rainbows#collections'
   get '/collection/:id', to:'rainbows#collection'
   get '/poison', to: 'rainbows#poison'
