@@ -2,15 +2,22 @@
 # rainbowfart
 彩虹屁网站
 
+# setup
+
+master key, credentials使用方法请看 https://blog.engineyard.com/rails-encrypted-credentials-on-rails-5.2 。
+1. EDITOR=vim rails credentials:edit
+1. environments/production.rb  `config.require_master_key = true`
+1. copy config/master.key to server
+
 # 加载数据
 
 1. 加载彩虹屁数据
-   注意json比较耗数据, 
+   注意json比较耗数据,
    ~~~shell
    rake import_triple_line_text:import_triple_line_text[db/rainbow_proposal.yml]
    rake import_triple_line_text:import_triple_line_text[db/rainbow.yml]
    rake import_triple_line_text:load_poisonous_soup
-   rake import_data:load_qqzf_csv[data/qqzf1.csv]   # 388w条记录，生产环境上SQLite第一次加载用时3108s, 51分钟，在本地postgresl用了40分钟. 
+   rake import_data:load_qqzf_csv[data/qqzf1.csv]   # 388w条记录，生产环境上SQLite第一次加载用时3108s, 51分钟，在本地postgresl用了40分钟.
    rake import_data:load_1juzi_csv[data/1juzi1.csv] # 12428343条记录
    ~~~
 1. 1juzi爬下来的数据分类按category1(大类), category2(小类）来分的。有部分文章是没有category2的
@@ -44,7 +51,7 @@ https://www.sitepoint.com/breadcrumbs-rails-gretel/,
 
 1. ActionView::Template::Error (The asset "application.css" is not present in the asset pipeline
     先检查是否有正确安装yarn.
-    Add env variable RAILS_SERVE_STATIC_FILES to start command, 
+    Add env variable RAILS_SERVE_STATIC_FILES to start command,
     [Stackoverflow](https://stackoverflow.com/questions/21969549/rails-application-css-asset-not-found-in-production-mode)
 1. `@q.result(distinct: true)` distinct为true时很耗时。查询qqzf387w记录大概要15-20s，去掉以后大概只要0.9s
 1. sqlite在数据量大的时候count非常慢, 380w条记录需要58978.9ms，分页查询只要0.8ms. 这对kaminari分页影响比较大.解决办法就是hack ActiveRelation
