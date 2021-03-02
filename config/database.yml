@@ -5,21 +5,33 @@
 #   gem 'sqlite3'
 #
 default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
+  timeout: 5000
+
+sqlite:
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  database: db/development.sqlite3
+
+postgresql:
+  adapter: postgresql
+  encoding: unicode
+  database: rainbowfart
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: rainbowfart_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: rainbowfart_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: rainbowfart
