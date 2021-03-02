@@ -27,6 +27,8 @@ class RainbowsController < InheritedResources::Base
   # 随机生成一句话, 返回json, 只包含彩虹屁，不包含励志语句
   def random
     rainbow = Rainbow.all.sample
+    ahoy.track "Random rainbowfart", title: "#{rainbow.sentence}"
+
     render json: rainbow and return
   end
 
