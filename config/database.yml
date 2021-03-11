@@ -16,7 +16,7 @@ sqlite:
   timeout: 5000
   database: db/development.sqlite3
 
-postgresql:
+postgresql: &postgresql
   adapter: postgresql
   host: db
   encoding: unicode
@@ -36,5 +36,5 @@ test:
   database: rainbowfart_test
 
 production:
-  <<: *default
-  database: rainbowfart
+  <<: *postgresql
+  database: <%= ENV.fetch("POSTGRES_DB") %>
