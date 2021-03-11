@@ -22,6 +22,7 @@ services:
       - db
   db:
     image: postgres
+    container_name: db
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
