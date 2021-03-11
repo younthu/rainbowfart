@@ -18,8 +18,11 @@ sqlite:
 
 postgresql:
   adapter: postgresql
+	host: db
   encoding: unicode
-  database: rainbowfart
+  database: rainbow
+	user: <%= ENV.fetch("POSTGRES_USER") %>
+	password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
 
 development:
   <<: *default

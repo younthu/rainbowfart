@@ -14,12 +14,18 @@ services:
       - 3000:3000
     networks:
       - rainbow-net
+    environment:
+      POSTGRES_PASSWORD:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: rainbow
   db:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=xxd99..aa1234
+      POSTGRES_PASSWORD:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: rainbow
 #  web:
 #    build:
 #      context: .

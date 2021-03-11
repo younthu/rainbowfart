@@ -8,6 +8,12 @@ master key, credentials使用方法请看 https://blog.engineyard.com/rails-encr
 1. EDITOR=vim rails credentials:edit
 1. environments/production.rb  `config.require_master_key = true`
 1. copy config/master.key to server
+1. create .env for docker-compose file
+    1. put `POSTGRES_PASSWORD` into .env file, it will be used by postgresql and rails
+       ~~~sh
+       # define env var default value.
+       POSTGRES_PASSWORD=xxxxx
+       ~~~
 
 # 加载数据
 
