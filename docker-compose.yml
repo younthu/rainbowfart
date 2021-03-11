@@ -41,6 +41,7 @@ services:
 #    ports:
 #      - 80:80
 networks:
+  rainbow-priv:
   rainbow-net:
     external:
       name: rainbow-net
