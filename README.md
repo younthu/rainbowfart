@@ -4,6 +4,7 @@
 
 # setup
 
+## docker-compose way
 master key, credentials使用方法请看 https://blog.engineyard.com/rails-encrypted-credentials-on-rails-5.2 。
 1. EDITOR=vim rails credentials:edit
 1. environments/production.rb  `config.require_master_key = true`
@@ -14,6 +15,8 @@ master key, credentials使用方法请看 https://blog.engineyard.com/rails-encr
        # define env var default value.
        POSTGRES_PASSWORD=xxxxx
        ~~~
+
+
 
 # 加载数据
 
