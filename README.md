@@ -15,7 +15,9 @@ master key, credentials使用方法请看 https://blog.engineyard.com/rails-encr
        # define env var default value.
        POSTGRES_PASSWORD=xxxxx
        ~~~
-
+1. 生产环境上, nginx在外部容器里, 无法访问rainbow/public目录，导致assets找不到。解决部分有两种:
+   1. 添加环境变量`RAILS_SERVE_STATIC_FILES`到rainbow容器, 让rails来提供assets
+   1. 把rainbow/public目录mount到nginx的容器下面去
 
 
 # 加载数据
@@ -72,4 +74,54 @@ https://www.sitepoint.com/breadcrumbs-rails-gretel/,
          end
        end
        @qqzfs = a.page(params[:page]).per(25)
+   ~~~
+
+# 数据库切换
+数据库切换用了 [yaml_db](https://github.com/yamldb/yaml_db), 从sqlite3切换到postgres.
+
+yaml_db的问题
+1. 不支持transaction
+2. 耗内存。8G的机器直接爆了。
+3.
+
+最后还是sqlite dump sql scripts, 手动改sql scripts, 再倒入到psql里面去
+1. 导出sqlite数据: ` sqlite3 rainbow_production.sqlite3 .dump > dump.sql`
+1. 导出schema: `sqlite3 rainbow_production.sqlite3 .schema > schema.sql`, 这个schema根据自己的实际情况选择用还是不用.
+1. put `\set ON_ERROR_STOP on` into `~/.psqlrc`
+1. 连接psql: `psql -U postgres -h db -d rainbow`
+1. 清除ar_internal_metadata里的内容`delete from ar_internal_metadata`
+1. sql scripts清理:
+    1. 清空rainbows: `delete from rainbows`
+    1. 删除第一行: `sed -i '' -e '1d' data.sql.bak`
+    1. 删除重复的索引: `index_user_comments_on_rainbow_id`
+    1. 删除data.sql.bak里面末尾sqlite_sequence相关的数据: `sed -i '' '/sqlite_sequence/d' data.sql.bak`
+1. 导入数据到psql: `psql -d rainbowfart_dev -U postgres < data.sql.bak`
+1. 更新sequence ids:
+   需要更新`admin_users`,`rainbows`,`tags`, `taggings`, `active_admin_comments`, `qqzfs`, `yijuzis`, `user_comments`
+
+   设置id_seq如下, 值为当前记录的最大id值:
+   ~~~sql
+   select setval('taggings_id_seq', 3734, true);
+   ~~~
+
+   下面是摘抄自stackoverflow
+   ~~~sql
+   -- Login to psql and run the following
+
+   -- What is the result?
+   SELECT MAX(id) FROM your_table;
+
+   -- Then run...
+   -- This should be higher than the last result.
+   SELECT nextval('your_table_id_seq');
+
+   -- If it's not higher... run this set the sequence last to your highest id.
+   -- (wise to run a quick pg_dump first...)
+
+   BEGIN;
+   -- protect against concurrent inserts while you update the counter
+   LOCK TABLE your_table IN EXCLUSIVE MODE;
+   -- Update the sequence
+   SELECT setval('your_table_id_seq', COALESCE((SELECT MAX(id)+1 FROM your_table), 1), false);
+   COMMIT;
    ~~~

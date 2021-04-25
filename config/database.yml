@@ -21,12 +21,11 @@ postgresql: &postgresql
   host: db
   encoding: unicode
   database: rainbow
-  user: <%= ENV.fetch("POSTGRES_USER") %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
 
 development:
   <<: *default
   database: rainbowfart_dev
+  user: "postgres"
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -37,4 +36,6 @@ test:
 
 production:
   <<: *postgresql
-  database: <%= ENV.fetch("POSTGRES_DB") %>
+  user: <%= ENV.fetch("POSTGRES_USER") {"postgres"}%>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") {"password"}%>
+  database: <%= ENV.fetch("POSTGRES_DB") {"rainbow"}%>
