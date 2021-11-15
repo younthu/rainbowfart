@@ -1,5 +1,5 @@
-#source 'https://rubygems.org'
-source 'http://mirrors.aliyun.com/rubygems/'
+source 'https://rubygems.org'
+# source 'http://mirrors.aliyun.com/rubygems/'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -76,6 +76,10 @@ gem "breadcrumbs_on_rails"
 
 # api statistics
 gem 'ahoy_matey'
+
+# sentry
+gem "sentry-ruby"
+gem "sentry-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
