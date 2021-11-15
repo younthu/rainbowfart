@@ -77,6 +77,9 @@ gem "breadcrumbs_on_rails"
 # api statistics
 gem 'ahoy_matey'
 
+# ahoy_matey need geocoder
+gem 'geocoder'
+
 # sentry
 gem "sentry-ruby"
 gem "sentry-rails"
