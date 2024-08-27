@@ -4,6 +4,9 @@
 
 也可以网页浏览毒鸡汤, http://rainbow.ilibrary.me/
 
+# Roadmap
+1. 添加AI chat支持，以对话的形式搜索想要的毒鸡汤.
+   
 # 加载数据
 
 1. 加载彩虹屁数据
