@@ -8,12 +8,91 @@
    ![home](./screenshots/home.png)
    ![home](./screenshots/single.png)
 
+彩虹屁站点: http://rainbow.ilibrary.me
+
+api地址: http://rainbow.ilibrary.me/api/rainbow/random
+
+github开源地址: [rainbowfart](https://github.com/younthu/rainbowfart).
+
+该api会随机显示返回一条句子，可能是彩虹屁，可能是毒鸡汤，也可能是心灵鸡汤。
+
+
+# 集成到网页
+
+本博客的顶部第二行显示的就是从该api获取的动态内容。
+
+目前每次请求都会返回不同的内容。后期考虑通过cookie来实现每5分钟刷新页面内容。
+
+
+## 静态网页效果代码
+下面的代码可以用来集成该api到别的页面, 效果和本博客顶部一样:
+
+~~~html
+				<div >
+					<a href="" id="tagline">
+						
+					</a>
+					<script>
+						$.getJSON("http://rainbow.ilibrary.me/api/rainbow/random", function(data,status){
+							$("#tagline").text(data.sentence)
+							$("#tagline").attr("href", "http://rainbow.ilibrary.me/rainbows/" + data.id)
+						})
+					</script>
+				</div>
+~~~
+
+## 带动效网页代码
+
+本博客顶部用了animated css的动效，下面是加动效后的代码，需要手动添加css的引用:
+
+~~~html
+				<div class="blog-motto animated lightSpeedIn delay-1s slower" >
+					<a href="" id="tagline">
+						
+					</a>
+					<a href="" id="rainbow" style="font-size: 12px;color:cyan">-- 彩虹屁提供</a>
+					<script>
+						$.getJSON("http://rainbow.ilibrary.me/api/rainbow/random", function(data,status){
+							$("#tagline").text(data.sentence)
+							$("#tagline").attr("href", "http://rainbow.ilibrary.me/rainbows/" + data.id)
+							$("#rainbow").attr("href", "http://rainbow.ilibrary.me/rainbows/" + data.id)
+						})
+					</script>
+				</div>
+~~~
+
+animated css cdn, 需要引用下面的代码才会有动效:
+
+~~~html
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+~~~
+
+# 集成到命令行
+
+也可以修改shell配置文件，比如我用zsh，直接在`~/.zshrc`里面添加下面的语句:
+
+~~~shell
+# say a sentence randomly
+echo "*********毒鸡汤**********"
+# -e 转义换行和颜色控制,\033[32m 打印绿色字符
+echo -e "\033[32m" `curl -s http://rainbow.ilibrary.me/api/rainbow/random | jq '.sentence'`
+~~~
+
+主要要手动安装`jq`: `brew install jq`
+
+效果如下:
+
+   ![s1](/screenshots/s1.png)
+   ![s2](/screenshots/s2.png)
+   ![s3](/screenshots/s3.png)
 # Roadmap
 1. 添加AI chat支持，以对话的形式搜索想要的毒鸡汤.
    1. [【NLP从零入门】预训练时代下，深度学习模型的文本分类算法（超多干货，小白友好，内附实践代码和文本分类常见中文数据集） 
 ](https://www.cnblogs.com/lugim/p/16696884.html)
-2. 自动爬取鸡汤文，并且继续分类.
-3. 
+1. 自动爬取鸡汤文，并且继续分类.
+2. 
    
 # setup
 
