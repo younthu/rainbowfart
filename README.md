@@ -37,6 +37,24 @@ master key, credentials使用方法请看 https://blog.engineyard.com/rails-encr
    rake import_data:load_1juzi_csv[data/1juzi1.csv] # 12428343条记录
    ~~~
 1. 1juzi爬下来的数据分类按category1(大类), category2(小类）来分的。有部分文章是没有category2的
+   
+# 日志分析
+
+## Nginx log analyzer
+[goaccess](https://github.com/allinurl/goaccess)能分析很多日志。 GoAccess is a real-time web log analyzer and interactive viewer that runs in a terminal in *nix systems or through your browser.
+
+1.  https://github.com/allinurl/goaccess
+2.  https://goaccess.io/ 
+3.  `brew install goaccess`
+4.  `apt-get install goaccess`
+5.  ![goaccess](./screenshots/goaccess.png)
+## Request log analyzer
+[request log analyzer](https://github.com/wvanbergen/request-log-analyzer), This is a simple command line tool to analyze request log files in various formats to produce a performance report. Its purpose is to find what actions are best candidates for optimization.
+
+1. Install ruby: `apt install ruby`
+2. Install [request log analyzer](https://github.com/wvanbergen/request-log-analyzer): `gem install request-log-analyzer`
+3. Analyze log: `request-log-analyzer log/production.log`
+   ![RequestLogAnalyzer](./screenshots/request-analyzer.png)
 
 # SEO
 
