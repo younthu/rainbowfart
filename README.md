@@ -1,8 +1,12 @@
 
 # rainbowfart
-彩虹屁网站, 提供REST API 拉去随机的毒鸡汤, http://rainbow.ilibrary.me/api/rainbow/random
+彩虹屁网站, 
 
-也可以网页浏览毒鸡汤, http://rainbow.ilibrary.me/
+1. 提供REST API 拉去随机的毒鸡汤, http://rainbow.ilibrary.me/api/rainbow/random
+   ![json api](./screenshots/api.png)
+1. 也可以网页浏览毒鸡汤, http://rainbow.ilibrary.me/
+   ![home](./screenshots/home.png)
+   ![home](./screenshots/single.png)
 
 # Roadmap
 1. 添加AI chat支持，以对话的形式搜索想要的毒鸡汤.
