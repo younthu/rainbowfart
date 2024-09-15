@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.7
 
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y apt-utils &&apt-get install -y build-essential libpq-dev nodejs
@@ -38,7 +38,11 @@ ENTRYPOINT ["bundle", "exec", "rake","assets:precompile"]
 EXPOSE 3000
 #ENV RAILS_SERVE_STATIC_FILES=1
 
-# start puma in socket and port, can test socket with curl: curl --unix-socket /var/www/app/my_rails_app.sock http:localhost/
-# 1. the shared socket works in ubuntu, not in Mac.
-# 1. curl version should be > 7.4
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-b", "unix:///var/www/app/my_rails_app.sock", "-p", "3000"]
+# The main command to run when the container starts. Also
+# tell the Rails dev server to bind to all interfaces by
+# default.
+#CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+COPY docker/app/docker-entrypoint.sh /usr/local/bin/
+RUN chmod 777 /usr/local/bin/docker-entrypoint.sh && ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["/usr/local/bin/docker-entrypoint.sh", "&&", "/bin/bash"]

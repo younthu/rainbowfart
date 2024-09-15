@@ -29,7 +29,8 @@ class RainbowsController < InheritedResources::Base
     rainbow = Rainbow.all.sample
     ahoy.track "Random rainbowfart", title: "#{rainbow.sentence}"
 
-    render json: rainbow and return
+    @rainbow = rainbow
+    render "show.json"
   end
 
   def show
