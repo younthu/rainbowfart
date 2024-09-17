@@ -92,7 +92,7 @@ echo -e "\033[32m" `curl -s http://rainbow.ilibrary.me/api/rainbow/random | jq '
    1. [【NLP从零入门】预训练时代下，深度学习模型的文本分类算法（超多干货，小白友好，内附实践代码和文本分类常见中文数据集） 
 ](https://www.cnblogs.com/lugim/p/16696884.html)
 1. 自动爬取鸡汤文，并且继续分类.
-2. 
+2. 合并毒鸡汤https://github.com/owen0o0/dujitang/blob/master/api/hitokoto.txt, 这里可以看到对方的毒鸡汤效果，挺好看的。https://www.iowen.cn/jitang/
    
 # setup
 
